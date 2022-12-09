@@ -1,30 +1,21 @@
+
 import numpy as np
-import pygame, os, complex
+import pygame, os
+from Complex import *
 
-
-
-#SETUP
 os.environ["SDL_VIDEO_CENTERED"] = '1'  #for the fullscreen window
+
 WIDTH, HEIGHT = 1920, 1080
 window_size = (WIDTH, HEIGHT)
 screen = pygame.display.set_mode(window_size)
+
 BLUE = (13, 67, 216)
-
-#Objet complexe
-class Complex():
-
-    def __init__(self, real, imaginary):
-        self.real = real
-        self.imaginary = imaginary
-
-    def sum(self, unComplexe):
-        return self.real + unComplexe.real, self.imaginary + unComplexe.imaginary
-
-    
+WHITE = (255, 255, 255)
 
 def main():
     run = True
     screen.fill(BLUE)
+    
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -33,4 +24,7 @@ def main():
                 
     pygame.quit()
 
+def Mandelbrot():
 
+if __name__ == "__main__":
+    main()
