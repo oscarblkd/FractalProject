@@ -7,6 +7,9 @@ class Complex():
         self.real = real
         self.imaginary = imaginary
         
+    def __str__(self) -> str:
+        return "z = " + str(self.real) + " + i" + str(self.imaginary)
+        
     def sum(self, complex):
         
         """Return a new Complex number who is the sum between two complex number"""
@@ -25,7 +28,3 @@ class Complex():
         
         a,b,c,d = self.real, self.imaginary, complex.real, complex.imaginary
         return Complex((a*c - b*d), (a*d+b*c))
-    
-
-    def __str__(self) -> str:
-        return "z = " + str(self.real) + " + i" + str(self.imaginary)
