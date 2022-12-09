@@ -1,10 +1,10 @@
-
 import numpy as np
 import pygame, os, complex
 
+
+
+
 os.environ["SDL_VIDEO_CENTERED"] = '1'  #for the fullscreen window
-
-
 WIDTH, HEIGHT = 1920, 1080
 window_size = (WIDTH, HEIGHT)
 screen = pygame.display.set_mode(window_size)
