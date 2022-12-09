@@ -19,20 +19,7 @@ class Complex():
         return
 
 
-    def Mandelbrot():
-        k = 8
-        v = 50
-        
-        
-        """
-        for index in range()
-            for jndex in range(0, v):
-
-"""
-
-
-
-        pass
+   
 
 
 
@@ -45,4 +32,12 @@ class Complex():
 
 
 
-        
+#-------------------------------------USINE--------------------------------------------------------------------
+
+
+
+
+
+
+
+
