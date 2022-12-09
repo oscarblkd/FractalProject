@@ -1,43 +1,31 @@
 class Complex():
-
-
+    
     def __init__(self, real, imaginary):
+        
+        """Create a new complex z = a + ib"""
+
         self.real = real
         self.imaginary = imaginary
+        
+    def sum(self, complex):
+        
+        """Return a new Complex number who is the sum between two complex number"""
+        
+        return Complex(self.real + complex.real, self.imaginary + complex.imaginary)
 
-    def sum(self, unComplexe):
-        return self.real + unComplexe.real, self.imaginary + unComplexe.imaginary
+    def sub(self, complex):
+        
+        """Return a new Complex number who is the substraction between two complex number"""
+        
+        return Complex(self.real - complex.real, self.imaginary - complex.imaginary)
 
-    def sub(self, unComplexe):
-        return self.real - unComplexe.real, self.imaginary - unComplexe.imaginary
+    def product(self, complex):
+        
+        """Return a new Complex number who is the product between two complex number"""
+        
+        a,b,c,d = self.real, self.imaginary, complex.real, complex.imaginary
+        return Complex((a*c - b*d), (a*d+b*c))
+    
 
-    def product(self, unComplexe):
-        a,b,c,d = self.real, self.imaginary, unComplexe.real, unComplexe.imaginary
-        return (a*c - b*d), (a*d+b*c)
-
-    def divide(self, unComplexe):
-        return
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-#-------------------------------------USINE--------------------------------------------------------------------
-
-
-
-
-
-
-
-
+    def __str__(self) -> str:
+        return "z = " + str(self.real) + " + i" + str(self.imaginary)
