@@ -6,8 +6,6 @@ This program generate fractals like the Julia Set or the Mandelbrot Set
 
 1. [Installation](#installation)
 2. [Features](#features)
-3. [Third Example](#third-example)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
 
 ## Installation
 
