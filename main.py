@@ -24,7 +24,7 @@ ZERO = Complex(0, 0)
 def main():
     run = True
     screen.fill(WHITE)
-    Julia(C_JULIA_TWO)
+    Julia(C_JULIA_ONE)
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

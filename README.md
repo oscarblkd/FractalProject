@@ -29,3 +29,7 @@ pip install pygame
 
 ![Julia Set for c = -0.8 + i0.156](pic/juliatwo.png)
 
+### Julia Set for c = 0.285 + i0.01
+
+![Julia Set for c = 0.285 + i0.01](pic/juliaone.png)
+
