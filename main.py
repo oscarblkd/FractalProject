@@ -2,9 +2,10 @@
 import numpy as np
 import pygame, os
 from Complex import *
-from numba import jit, njit, vectorize, cuda, uint32, f8, uint8
+from numba import jit, njit, vectorize, cuda, uint32, f8, uint8, prange
 
-os.environ["SDL_VIDEO_CENTERED"] = '1'  #for the fullscreen window
+#os.environ["SDL_VIDEO_CENTERED"] = '1'  #for the fullscreen window
+
 
 WIDTH, HEIGHT = 1920, 1080
 window_size = (WIDTH, HEIGHT)
@@ -22,9 +23,10 @@ ZERO = Complex(0, 0)
 
 
 def main():
+    pygame.init()
     run = True
     screen.fill(WHITE)
-    Julia(C_JULIA_ONE)
+    Julia_CPU(C_JULIA_ONE)
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -32,8 +34,30 @@ def main():
         pygame.display.update()
                 
     pygame.quit()
+    
+def main_gpu():
+    pygame.init()
+    running = True
+    while running:
+        # Compute the Mandelbrot set
+        image = Mandelbrot_GPU()
 
-def Julia(c = Complex):
+        # Convert the image to a Pygame surface
+        surface = pygame.surfarray.make_surface(image)
+
+        # Draw the image to the window
+        screen.blit(surface, (0, 0))
+
+        # Check for events
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        pygame.display.update()
+
+    # Quit Pygame
+    pygame.quit()
+
+def Julia_CPU(c = Complex):
     
     MAX_ITERATIONS = 5000
     
@@ -59,5 +83,30 @@ def Julia(c = Complex):
             color = int((16 * iterations / 100) % 255), int((16 * iterations / 100) % 255), int((128 * iterations / 100) % 255)
             screen.set_at((x, y), color)
 
+@jit
+def Mandelbrot_GPU():
+    
+    MAX_ITERATIONS = 128
+    real_min = -2
+    real_max = 2
+    imaginary_min = -2
+    imaginary_max = 2
+    image = np.zeros((1920, 1080))
+
+
+    for x in range(1920):
+        for y in range(1080):
+            c = complex(real_min + (real_max - real_min) * x / 1920, 
+                        imaginary_min + (imaginary_max - imaginary_min) * y / 1080)
+            z = complex(0, 0)
+            iterations = 0
+            
+            while abs(z) < 2 and iterations < MAX_ITERATIONS:
+                z = z * z + c
+                iterations += 1
+
+            image[y, x] = iterations
+    return image
+
 if __name__ == "__main__":
-    main()
+    main_gpu()
