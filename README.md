@@ -26,5 +26,5 @@ pip install pygame
 
 ## Result
 
-![Alt text](pic/juliatwo.png)
+![Julia Set for c = -0.8 + i0.156](pic/juliatwo.png)
 
