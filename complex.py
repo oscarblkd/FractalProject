@@ -1,3 +1,4 @@
+import math
 class Complex():
     
     def __init__(self, real, imaginary):
@@ -28,3 +29,10 @@ class Complex():
         
         a,b,c,d = self.real, self.imaginary, complex.real, complex.imaginary
         return Complex((a*c - b*d), (a*d+b*c))
+    
+    
+    def abs(z):
+        
+        """Return the absolute value of a complex"""
+        
+        return math.sqrt(z.real * z.real + z.imaginary * z.imaginary)
