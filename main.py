@@ -25,6 +25,7 @@ def main():
     pygame.quit()
 
 def Mandelbrot():
+    return 0
 
 if __name__ == "__main__":
     main()
