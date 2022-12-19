@@ -5,6 +5,7 @@ from math import *
 from numba import *
 import matplotlib.cm
 
+
 os.environ["SDL_VIDEO_CENTERED"] = '1'  #for the fullscreen window
 
 WIDTH, HEIGHT = 1920, 1080
@@ -13,9 +14,8 @@ screen = pygame.display.set_mode(window_size)
 
 #Palette initialisation
 
-colormap = matplotlib.cm.jet
-color_list = [colormap(i) for i in range(256)]
-palette = [(0, 0, 0)] + [(0, 0, i) for i in range(255)]
+colors = [(0, 0, 0)] + [(int(i / 2), 0, i) for i in range(255)]
+palette = [pygame.Color(*color) for color in colors]
 
 #Color Constant
 
@@ -36,8 +36,8 @@ def main():
     
     #Initialisation of the surface 
     
-    image = Julia_GPU(C_JULIA_ONE) 
-    image = image - 1
+    image = Julia_GPU(C_JULIA_TWO) 
+    image = image * 2
     surface = pygame.surfarray.make_surface(image)
     surface.set_palette(palette)
     screen.blit(surface, (0, 0))
@@ -59,7 +59,7 @@ def Julia_GPU(c = complex):
     
     #Axis initialisation
     
-    MAX_ITERATIONS = 1024
+    MAX_ITERATIONS = 2048
     image = np.empty((WIDTH, HEIGHT), dtype=np.int32)
     real_min = -2
     real_max = 2
