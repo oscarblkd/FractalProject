@@ -22,9 +22,9 @@ pip install pygame
 
 1. It can generate any Julia Set with a complex number given (z = a + ib) and the Mandelbrot Set
 2. A GUI to change parameters (TODO)
-3. An interactive window to zoom or move in the fractal 
+3. An interactive window to zoom or move in the fractal  (TODO)
 
 ## Result
 
-![Julia Set for c = -0.8 + i0.156](‪C:\Users\belka\Pictures\juliatwo.png)
+![Julia Set where c = -0.8 + i0.156](c:/Users/belka/Pictures/juliatwo.png)
 
