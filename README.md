@@ -25,6 +25,7 @@ pip install pygame
 3. An interactive window to zoom or move in the fractal  (TODO)
 
 ## Result
+### Julia Set for c = -0.8 + i0.156
 
 ![Julia Set for c = -0.8 + i0.156](pic/juliatwo.png)
 
