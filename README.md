@@ -26,4 +26,5 @@ pip install pygame
 
 ## Result
 
-![Julia Set for c = -0.8 + i0.156](‪C:\Users\belka\Pictures\juliatwo.png?raw=true "Julia set")
+![Julia Set for c = -0.8 + i0.156](‪C:\Users\belka\Pictures\juliatwo.png)
+
