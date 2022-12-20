@@ -9,7 +9,7 @@ This program generate fractals like the Julia Set or the Mandelbrot Set
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install numpy and pygame.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install numpy, pygame, matplotlib and numba.
 
 ```bash
 pip install numpy
