@@ -3,7 +3,7 @@ import time as time
 import pygame, os
 from math import *
 from numba import *
-import scipy
+
 
 
 os.environ["SDL_VIDEO_CENTERED"] = '1'  #for the fullscreen window
@@ -53,7 +53,7 @@ def main():
     pygame.quit()
 
 @jit
-def Julia_GPU(c = complex):
+def julia(c : complex):
     
     """Return an array of the image data"""
     
@@ -82,67 +82,5 @@ def Julia_GPU(c = complex):
     
     return image
 
-@jit                
-def smooth_coloring(c, max_iterations):
-    """Return an array of the image data using the smooth coloring algorithm."""
-    # Initialize the image array and the axis limits
-    image = np.empty((WIDTH, HEIGHT), dtype=np.float32)
-    real_min = -2
-    real_max = 2
-    imaginary_min = -1
-    imaginary_max = 1
-
-    # Iterate over each pixel in the image
-    for x in range(WIDTH):
-        for y in range(HEIGHT):
-            iterations = 0
-            z = complex(real_min + (real_max - real_min) * x / WIDTH, 
-                        imaginary_min + (imaginary_max - imaginary_min) * y / HEIGHT)
-            
-            # Calculate the number of iterations until the point escapes to infinity
-            while(iterations < max_iterations) and abs(z) < 4:
-                iterations += 1
-                z = z * z + c
-
-            # Use the number of iterations to calculate the color of the pixel
-            if iterations == max_iterations:
-                image[x, y] = 0
-            else:
-                image[x, y] = iterations + 1 - log(log(abs(z)))/log(2)
-    
-    return image
-
-@jit
-def supersample(c, max_iterations, scale):
-    """Return an array of the image data using supersampling."""
-    # Initialize the image array and the axis limits
-    image = np.empty((WIDTH * scale, HEIGHT * scale), dtype=np.float32)
-    real_min = -2
-    real_max = 2
-    imaginary_min = -1
-    imaginary_max = 1
-
-    # Iterate over each pixel in the image
-    for x in range(WIDTH * scale):
-        for y in range(HEIGHT * scale):
-            iterations = 0
-            z = complex(real_min + (real_max - real_min) * x / (WIDTH * scale), 
-                        imaginary_min + (imaginary_max - imaginary_min) * y / (HEIGHT * scale))
-            
-            # Calculate the number of iterations until the point escapes to infinity
-            while(iterations < max_iterations) and abs(z) < 4:
-                iterations += 1
-                z = z * z + c
-
-            # Use the number of iterations to calculate the color of the pixel
-            if iterations == max_iterations:
-                image[x, y] = 0
-            else:
-                image[x, y] = iterations + 1 - log(log(abs(z)))/log(2)
-    
-    # Scale the image down to the desired size
-    image = scipy.ndimage.zoom(image, (WIDTH / image.shape[0], HEIGHT / image.shape[1]), order=1)
-    
-    return image
 if __name__ == "__main__":
     main()
