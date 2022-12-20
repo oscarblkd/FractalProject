@@ -40,6 +40,6 @@ pip install numba
 
 ![Alt text](pic/4.png)
 
-### Julia Set for c = -0.4 - i0.59!
+### Julia Set for c = -0.4 - i0.59
 
 ![Alt text](pic/5.png)
